@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3309/shopee_db"
+    username: hoanght
+    password: "123456"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

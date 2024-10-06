@@ -1,0 +1,56 @@
+Giải thích về mô hình model - view - architecture:
+
+    -- Client (Reactjs/App/User...)
+        Hành động: Gửi các yêu cầu (request) tới server. Các loại yêu cầu phổ biến bao gồm
+        GET, POST, PUT, DELETE
+
+    -> Tầng 1: Controller
+        >> Mục đích: Tiếp nhận các yêu cầu HTTP từ client.
+           Chức năng: Xác định loại yêu cầu (GET, POST, v.v.), sau đó gọi các phương thức
+           phù hợp từ tầng Service để xử lý các logic nghiệp vụ.
+
+    -> Tầng 2: Service
+        >> Mục đích: Chứa các logic nghiệp vụ và xử lý dữ liệu từ yêu cầu.
+           Chức năng: Nhận dữ liệu từ Controller, kiểm tra các điều kiện nghiệp vụ
+           (như tính hợp lệ của dữ liệu), sau đó gọi Repository để tương tác với cơ sở dữ liệu.
+
+    -> Tầng 3: Repository
+        >> Mục đích: Mục đích: Giao tiếp với cơ sở dữ liệu.
+           Chức năng: Thực hiện các thao tác như truy vấn, thêm, xóa, cập nhật dữ liệu trong
+           CSDL. Repository sử dụng các thực thể (Entity) để ánh xạ dữ liệu từ cơ sở dữ liệu
+           thành các đối tượng trong Java và trả kết quả về cho Service.
+
+Sơ đồ minh hoạ:
+
+- Client
+    -> request // client gửi request tới server
+
+        -> Server <Controller, Service, Repository>
+
+            -> Controller // Tiếp nhận yêu cầu và gọi phương thức ở service tương ứng với request
+
+                -> Service // Xử lí dữ liệu theo yêu cầu và gọi Repository để thao tác với CSDL
+
+                    -> Repository // Kết nối với db qua thực thể Entity, chú thích ở mục dưới
+
+                        -> Database <-
+
+                    Repository <-
+
+                Service <-
+
+            Controller <-
+
+        Response <-
+
+    Client received.
+---
+    Giải thích khái niệm:
+        Entity: Là các đối tượng ánh xạ dữ liệu trong cơ sở dữ liệu. Khi Repository truy vấn
+        dữ liệu, nó sẽ chuyển dữ liệu từ các bảng cơ sở dữ liệu thành các đối tượng Entity.
+
+        DTO: Data transfer object - Là đối tượng (Package) dùng để chuyển dữ liệu giữa các tầng.
+        DTO giúp quản lý và chuyển dữ liệu cần thiết giữa các phần của ứng dụng mà không cần
+        truyền trực tiếp các đối tượng Entity.
+
+        Response: Là dữ liệu được server phản hồi lại cho Client sau khi xử lý yêu cầu.
