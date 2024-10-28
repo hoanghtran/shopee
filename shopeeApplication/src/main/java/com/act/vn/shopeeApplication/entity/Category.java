@@ -1,6 +1,8 @@
 package com.act.vn.shopeeApplication.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +25,8 @@ public class Category {
     String id;
 
     @Column(unique = true)
+    @NotBlank
+    @Size(min = 5, message = "Name must be least 5 char")
     String name;
 
     @Column(name = "Create_at")

@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -21,6 +20,6 @@ public class ApiResponse<T> {
     HttpStatus status;
     String message;
     final LocalDateTime timestamp = LocalDateTime.now();
-    List<CategoryResponse> result;
+    CategoryItemResponse categoryItemResponse;
     T body;
 }

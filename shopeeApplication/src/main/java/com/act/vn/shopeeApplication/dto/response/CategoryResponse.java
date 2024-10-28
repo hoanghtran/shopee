@@ -8,14 +8,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class CategoryResponse {
+import java.util.List;
 
-    String id;
-    String name;
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CategoryResponse {
+    List<CategoryItemResponse> context;
+    int pageNumber;
+    int pageSize;
+    int totalElements;
+    int totalPages;
+    boolean isFirstPage;
+    boolean isLastPage;
 }

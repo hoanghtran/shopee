@@ -5,7 +5,8 @@ import com.act.vn.shopeeApplication.dto.response.ApiResponse;
 
 public interface CategoryService {
 
-    ApiResponse getAllCategories();
+    ApiResponse getAllCategories(int pageNumber, int pageSize, String sortBy, String sortOrder);
+
     ApiResponse getCategoryById(String id);
 
     ApiResponse createNewCategory(CategoryRequest categoryRequest);
